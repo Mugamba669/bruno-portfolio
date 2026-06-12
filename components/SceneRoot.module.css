@@ -1,0 +1,67 @@
+.canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hud {
+  position: fixed;
+  left: var(--gutter);
+  bottom: 1.6rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.4s var(--ease-out);
+}
+
+.hudHidden {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.hudInner {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hudNum {
+  color: var(--amber);
+}
+
+.hudTitle {
+  color: var(--ink);
+}
+
+.hudNote {
+  color: var(--ink-faint);
+}
+
+.hudTrack {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.hudTick {
+  width: 1.4rem;
+  height: 1px;
+  background: var(--line-strong);
+  transition: background 0.5s;
+}
+
+.hudTickOn {
+  background: var(--amber);
+}
+
+@media (max-width: 880px) {
+  .hud {
+    display: none;
+  }
+}
