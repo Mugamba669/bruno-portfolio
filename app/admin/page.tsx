@@ -1,13 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getPortfolio } from "@/lib/portfolio";
+import { PortfolioEditor } from "@/components/admin/PortfolioEditor";
 
-export default function AdminHome() {
+export const dynamic = "force-dynamic";
+
+export default async function AdminHome() {
+  const data = await getPortfolio();
   return (
-    <div className="p-8">
-      <Card className="max-w-sm">
-        <CardHeader><CardTitle>Admin</CardTitle></CardHeader>
-        <CardContent><Button>shadcn works</Button></CardContent>
-      </Card>
+    <div className="space-y-8">
+      <h1 className="text-2xl font-semibold">Edit portfolio</h1>
+      <PortfolioEditor initial={data} />
     </div>
   );
 }
