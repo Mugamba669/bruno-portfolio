@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { profile } from "@/lib/data";
+import { PersonStructuredData } from "@/components/StructuredData";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -8,25 +10,74 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const SITE_URL = profile.site;
+const TITLE = `${profile.name} — Software Engineer & Technical Lead in Kampala`;
+const DESCRIPTION =
+  "Mugamba Bruno M.H. is a senior software engineer & technical lead in Kampala, Uganda — building full-stack web, Flutter mobile apps and DevOps infrastructure with TypeScript, NestJS, Laravel, Go and C++.";
+
 export const metadata: Metadata = {
-  title: "Bruno M.H. — Senior Software Engineer",
-  description:
-    "Mugamba Bruno M.H. — Senior software engineer in Kampala building production systems across web, mobile, and server infrastructure. Full-Stack · Mobile · DevOps.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: `%s — ${profile.shortName}`,
+  },
+  description: DESCRIPTION,
+  applicationName: `${profile.shortName} — Portfolio`,
+  authors: [{ name: profile.name, url: SITE_URL }],
+  creator: profile.name,
+  publisher: profile.name,
+  category: "technology",
   keywords: [
+    "Mugamba Bruno",
+    "Bruno M.H.",
+    "Mugamba Bruno software engineer",
     "software engineer",
-    "full-stack",
-    "Flutter",
+    "software engineer Kampala",
+    "software engineer Uganda",
+    "full-stack developer",
+    "full-stack developer Kampala",
+    "Flutter developer",
+    "Flutter developer Uganda",
+    "technical lead",
+    "DevOps engineer",
+    "Next.js developer",
     "NestJS",
     "Laravel",
-    "DevOps",
+    "TypeScript",
+    "Go",
+    "C++",
     "Kampala",
     "Uganda",
   ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Bruno M.H. — Senior Software Engineer",
-    description:
-      "Building production systems across web, mobile, and server infrastructure.",
-    type: "website",
+    type: "profile",
+    url: SITE_URL,
+    siteName: `${profile.name} — Portfolio`,
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: "en_US",
+    firstName: "Mugamba",
+    lastName: "Bruno",
+    username: "Mugamba669",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -48,7 +99,10 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=switzer@400,500,600&display=swap"
         />
       </head>
-      <body className="grain">{children}</body>
+      <body className="grain">
+        <PersonStructuredData />
+        {children}
+      </body>
     </html>
   );
 }
