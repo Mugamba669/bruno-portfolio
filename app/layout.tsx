@@ -2,7 +2,6 @@ import type { Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import { getPortfolio } from "@/lib/portfolio";
 import { PersonStructuredData } from "@/components/StructuredData";
-import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
