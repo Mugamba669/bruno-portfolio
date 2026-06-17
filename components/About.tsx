@@ -1,5 +1,5 @@
 import Reveal from "./Reveal";
-import { profile } from "@/lib/data";
+import type { Portfolio } from "@/lib/schema";
 import styles from "./About.module.css";
 
 const principles = [
@@ -20,7 +20,7 @@ const principles = [
   },
 ];
 
-export default function About() {
+export default function About({ profile }: { profile: Portfolio["profile"] }) {
   return (
     <section className="section" id="about">
       <div className="container">

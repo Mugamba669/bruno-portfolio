@@ -1,6 +1,6 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
-import { profile } from "@/lib/data";
+import { getPortfolio } from "@/lib/portfolio";
 import { PersonStructuredData } from "@/components/StructuredData";
 import "./globals.css";
 
@@ -10,76 +10,45 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = profile.site;
-const TITLE = `${profile.name} — Software Engineer & Technical Lead in Kampala`;
-const DESCRIPTION =
-  "Mugamba Bruno M.H. is a senior software engineer & technical lead in Kampala, Uganda — building full-stack web, Flutter mobile apps and DevOps infrastructure with TypeScript, NestJS, Laravel, Go and C++.";
-
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: TITLE,
-    template: `%s — ${profile.shortName}`,
-  },
-  description: DESCRIPTION,
-  applicationName: `${profile.shortName} — Portfolio`,
-  authors: [{ name: profile.name, url: SITE_URL }],
-  creator: profile.name,
-  publisher: profile.name,
-  category: "technology",
-  keywords: [
-    "Mugamba Bruno",
-    "Bruno M.H.",
-    "Mugamba Bruno software engineer",
-    "software engineer",
-    "software engineer Kampala",
-    "software engineer Uganda",
-    "full-stack developer",
-    "full-stack developer Kampala",
-    "Flutter developer",
-    "Flutter developer Uganda",
-    "technical lead",
-    "DevOps engineer",
-    "Next.js developer",
-    "NestJS",
-    "Laravel",
-    "TypeScript",
-    "Go",
-    "C++",
-    "Kampala",
-    "Uganda",
-  ],
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    type: "profile",
-    url: SITE_URL,
-    siteName: `${profile.name} — Portfolio`,
-    title: TITLE,
-    description: DESCRIPTION,
-    locale: "en_US",
-    firstName: "Mugamba",
-    lastName: "Bruno",
-    username: "Mugamba669",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<import("next").Metadata> {
+  const { profile, seo } = await getPortfolio();
+  const SITE_URL = profile.site;
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: seo.title, template: `%s — ${profile.shortName}` },
+    description: seo.description,
+    applicationName: `${profile.shortName} — Portfolio`,
+    authors: [{ name: profile.name, url: SITE_URL }],
+    creator: profile.name,
+    publisher: profile.name,
+    category: "technology",
+    keywords: seo.keywords,
+    alternates: { canonical: "/" },
+    openGraph: {
+      type: "profile",
+      url: SITE_URL,
+      siteName: `${profile.name} — Portfolio`,
+      title: seo.title,
+      description: seo.description,
+      locale: "en_US",
+      firstName: "Mugamba",
+      lastName: "Bruno",
+      username: "Mugamba669",
+    },
+    twitter: { card: "summary_large_image", title: seo.title, description: seo.description },
+    robots: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
-  },
-};
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#0b0b0e",

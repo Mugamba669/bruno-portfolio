@@ -1,8 +1,8 @@
 import Reveal from "./Reveal";
-import { profile } from "@/lib/data";
+import type { Portfolio } from "@/lib/schema";
 import styles from "./Contact.module.css";
 
-export default function Contact() {
+export default function Contact({ profile }: { profile: Portfolio["profile"] }) {
   return (
     <section className={`section ${styles.contact}`} id="contact">
       <div className="container">

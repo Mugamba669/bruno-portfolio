@@ -1,8 +1,12 @@
 import Reveal from "./Reveal";
-import { experience } from "@/lib/data";
+import type { Portfolio } from "@/lib/schema";
 import styles from "./Experience.module.css";
 
-export default function Experience() {
+export default function Experience({
+  experience,
+}: {
+  experience: Portfolio["experience"];
+}) {
   return (
     <section className="section" id="experience">
       <div className="container">

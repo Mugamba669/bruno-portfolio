@@ -1,4 +1,4 @@
-import { profile, skills, experience } from "@/lib/data";
+import { getPortfolio } from "@/lib/portfolio";
 
 /**
  * Server-rendered JSON-LD (schema.org) so search engines understand this site
@@ -7,7 +7,8 @@ import { profile, skills, experience } from "@/lib/data";
  *
  * A @graph bundles a Person node and a WebSite node that reference each other.
  */
-export function PersonStructuredData() {
+export async function PersonStructuredData() {
+  const { profile, skills, experience } = await getPortfolio();
   const knowsAbout = skills.flatMap((group) => group.items);
   const current = experience.find((e) => e.period === "Current") ?? experience[0];
 

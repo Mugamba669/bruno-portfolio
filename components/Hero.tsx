@@ -1,12 +1,18 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { profile, stats } from "@/lib/data";
+import type { Portfolio } from "@/lib/schema";
 import styles from "./Hero.module.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export default function Hero() {
+export default function Hero({
+  profile,
+  stats,
+}: {
+  profile: Portfolio["profile"];
+  stats: Portfolio["stats"];
+}) {
   const reduced = useReducedMotion();
   const anim = (delay: number) => ({
     initial: reduced ? false : { opacity: 0, y: 42 },

@@ -1,8 +1,8 @@
 import Reveal from "./Reveal";
-import { skills } from "@/lib/data";
+import type { Portfolio } from "@/lib/schema";
 import styles from "./Skills.module.css";
 
-export default function Skills() {
+export default function Skills({ skills }: { skills: Portfolio["skills"] }) {
   return (
     <section className="section" id="skills">
       <div className="container">

@@ -2,14 +2,14 @@
 
 import { useRef, useCallback } from "react";
 import Reveal from "./Reveal";
-import { projects } from "@/lib/data";
+import type { Portfolio } from "@/lib/schema";
 import styles from "./Projects.module.css";
 
 function TiltCard({
   project,
   delay,
 }: {
-  project: (typeof projects)[number];
+  project: Portfolio["projects"][number];
   delay: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -91,7 +91,11 @@ function TiltCard({
   );
 }
 
-export default function Projects() {
+export default function Projects({
+  projects,
+}: {
+  projects: Portfolio["projects"];
+}) {
   return (
     <section className="section" id="projects">
       <div className="container">

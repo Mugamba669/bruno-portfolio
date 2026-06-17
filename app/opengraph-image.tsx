@@ -1,11 +1,13 @@
 import { ImageResponse } from "next/og";
-import { profile } from "@/lib/data";
+import { profile as seedProfile } from "@/lib/data";
+import { getPortfolio } from "@/lib/portfolio";
 
-export const alt = `${profile.name} — Software Engineer & Technical Lead`;
+export const alt = `${seedProfile.name} — Software Engineer & Technical Lead`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const { profile } = await getPortfolio();
   return new ImageResponse(
     (
       <div
