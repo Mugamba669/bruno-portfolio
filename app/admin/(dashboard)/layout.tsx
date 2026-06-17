@@ -11,17 +11,23 @@ const SECTIONS = [
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto flex max-w-6xl gap-8 p-6">
-      <aside className="sticky top-6 hidden h-fit w-48 shrink-0 flex-col gap-1 md:flex">
-        <div className="mb-3 text-sm font-semibold">Portfolio CMS</div>
+    <div className="mx-auto flex max-w-6xl gap-10 px-6 py-10">
+      <aside className="sticky top-10 hidden h-fit w-52 shrink-0 flex-col gap-1 md:flex">
+        <div className="mb-5 flex items-center gap-2 px-3">
+          <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_10px_var(--color-primary)]" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
+            Portfolio CMS
+          </span>
+        </div>
         {SECTIONS.map((s) => (
           <Link key={s.href} href={s.href}
-            className="rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-background hover:text-foreground">
+            className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
             {s.label}
           </Link>
         ))}
-        <form action="/api/admin/logout" method="post" className="mt-4">
-          <button className="w-full rounded-md px-3 py-2 text-left text-sm text-destructive hover:bg-background">
+        <div className="my-3 h-px bg-border" />
+        <form action="/api/admin/logout" method="post">
+          <button className="w-full rounded-md px-3 py-2 text-left text-sm text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive">
             Log out
           </button>
         </form>

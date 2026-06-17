@@ -1,36 +1,78 @@
 @import "tailwindcss";
 
+/* ————— Admin theme: obsidian + amber, matching the portfolio home page ————— */
 @theme {
-  --color-background: oklch(1 0 0);
-  --color-foreground: oklch(0.145 0 0);
-  --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.145 0 0);
-  --color-primary: oklch(0.205 0 0);
-  --color-primary-foreground: oklch(0.985 0 0);
-  --color-secondary: oklch(0.97 0 0);
-  --color-secondary-foreground: oklch(0.205 0 0);
-  --color-muted: oklch(0.97 0 0);
-  --color-muted-foreground: oklch(0.556 0 0);
-  --color-accent: oklch(0.97 0 0);
-  --color-accent-foreground: oklch(0.205 0 0);
-  --color-destructive: oklch(0.577 0.245 27.325);
-  --color-destructive-foreground: oklch(0.985 0 0);
-  --color-border: oklch(0.922 0 0);
-  --color-input: oklch(0.922 0 0);
-  --color-ring: oklch(0.708 0 0);
-  --color-popover: oklch(1 0 0);
-  --color-popover-foreground: oklch(0.145 0 0);
-  --radius-sm: calc(0.625rem - 4px);
-  --radius-md: calc(0.625rem - 2px);
-  --radius-lg: 0.625rem;
-  --radius-xl: calc(0.625rem + 4px);
+  /* Fonts — Fontshare Clash/Switzer are loaded in the root layout <head>;
+     JetBrains Mono comes from next/font (--font-jetbrains). */
+  --font-sans: "Switzer", -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Clash Display", "Trebuchet MS", sans-serif;
+  --font-mono: var(--font-jetbrains), "SFMono-Regular", Menlo, monospace;
+
+  /* Surfaces */
+  --color-background: #0b0b0e;
+  --color-foreground: #edeae3;
+  --color-card: #131318;
+  --color-card-foreground: #edeae3;
+  --color-popover: #15151b;
+  --color-popover-foreground: #edeae3;
+
+  /* Amber primary (the portfolio accent) */
+  --color-primary: #f0b254;
+  --color-primary-foreground: #1a1206;
+
+  /* Secondary / muted / accent */
+  --color-secondary: #1b1b22;
+  --color-secondary-foreground: #edeae3;
+  --color-muted: #16161b;
+  --color-muted-foreground: #98948b;
+  --color-accent: #221c10;
+  --color-accent-foreground: #f0b254;
+
+  /* Destructive — a warm red that sits in the palette */
+  --color-destructive: #e2664e;
+  --color-destructive-foreground: #1a0f08;
+
+  /* Lines & focus */
+  --color-border: rgba(237, 234, 227, 0.10);
+  --color-input: rgba(237, 234, 227, 0.16);
+  --color-ring: #f0b254;
+
+  --radius-sm: calc(0.7rem - 4px);
+  --radius-md: calc(0.7rem - 2px);
+  --radius-lg: 0.7rem;
+  --radius-xl: calc(0.7rem + 4px);
 }
 
-/* Raw CSS variables consumed directly via var() by shadcn components
-   (e.g. sonner's inline styles reference --popover, --radius), as opposed
-   to the @theme tokens above which generate utility classes. */
+/* Base — defaults shadcn relies on + portfolio-matching typography.
+   Scoped to /admin only (this file is imported solely by app/admin/layout.tsx). */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    color-scheme: dark;
+    scrollbar-color: #5c5953 #0b0b0e;
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3,
+  [data-slot="card-title"] {
+    font-family: var(--font-display);
+    letter-spacing: -0.012em;
+  }
+  ::selection {
+    background: #f0b254;
+    color: #1a1206;
+  }
+}
+
+/* Raw vars consumed via var() by some shadcn components (e.g. sonner inline styles) */
 :root {
-  --radius: 0.625rem;
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
+  --radius: 0.7rem;
+  --popover: #15151b;
+  --popover-foreground: #edeae3;
 }
