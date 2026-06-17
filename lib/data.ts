@@ -161,7 +161,7 @@ export const projects = [
 
 export const stats = [
   { value: "5+", label: "Years shipping production systems" },
-  { value: "3", label: "Apps live on Google Play" },
+  { value: "5+", label: "Apps live on Google Play" },
   { value: "8", label: "Languages across the stack" },
   { value: "∞", label: "Curiosity for hard problems" },
 ];
