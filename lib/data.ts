@@ -1,3 +1,5 @@
+import type { Portfolio } from "@/lib/schema";
+
 export const profile = {
   name: "Mugamba Bruno M.H.",
   shortName: "Bruno M.H.",
@@ -165,3 +167,29 @@ export const stats = [
   { value: "8", label: "Languages across the stack" },
   { value: "∞", label: "Curiosity for hard problems" },
 ];
+
+export const defaultSeo = {
+  title: `${profile.name} — Software Engineer & Technical Lead in Kampala`,
+  description:
+    "Mugamba Bruno M.H. is a senior software engineer & technical lead in Kampala, Uganda — building full-stack web, Flutter mobile apps and DevOps infrastructure with TypeScript, NestJS, Laravel, Go and C++.",
+  keywords: [
+    "Mugamba Bruno", "Bruno M.H.", "software engineer", "software engineer Kampala",
+    "software engineer Uganda", "full-stack developer", "Flutter developer",
+    "technical lead", "DevOps engineer", "Next.js developer", "NestJS", "Laravel",
+    "TypeScript", "Go", "Kampala", "Uganda",
+  ],
+};
+
+export const defaultPortfolio: Portfolio = {
+  profile,
+  skills: skills.map((s) => ({ group: s.group, items: s.items })),
+  experience: experience.map((e) => ({
+    role: e.role, company: e.company, place: e.place, period: e.period, points: e.points,
+  })),
+  projects: projects.map((p) => ({
+    index: p.index, name: p.name, stack: p.stack, description: p.description,
+    link: p.link, linkLabel: p.linkLabel, accent: p.accent,
+  })),
+  stats: stats.map((s) => ({ value: s.value, label: s.label })),
+  seo: defaultSeo,
+};
